@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Crear cuenta</title>
+</head>
+
+<body>
+    <nav id="nav">
+        <div id="nav-img">
+          <img id="img-depofit" src="https://depofit.com/cdn/shop/files/unnamed-1_41a1f3de-0e1b-4c9c-acc1-8ac28da81be4_1600x.png?v=1621865774">
+        </div>
+        <div id="nav-links">
+          <a href="">Hombre</a>
+          <a href="">Mujer</a>
+          <a href="">Nutricion Deportiva</a>
+        </div>
+        <div id="nav-input">
+          <input autocomplete="off" id="input" type="text" placeholder="Buscar" autocomplete="off">
+          <svg width="24" id="svg-buscar"  height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/></svg>
+        </div>
+        <div id="nav-cart">
+          <div class="contenedor-svg">
+            <svg xmlns="http://www.w3.org/2000/svg" id="cart" class="svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z"/></svg>
+          </div>
+          <div class="contenedor-svg">
+          <svg xmlns="http://www.w3.org/2000/svg" id="user" class="svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c3.032 0 5.5 2.467 5.5 5.5 0 1.458-.483 3.196-3.248 5.59 4.111 1.961 6.602 5.253 7.482 8.909h-19.486c.955-4.188 4.005-7.399 7.519-8.889-1.601-1.287-3.267-3.323-3.267-5.61 0-3.033 2.468-5.5 5.5-5.5zm0-2c-4.142 0-7.5 3.357-7.5 7.5 0 2.012.797 3.834 2.086 5.182-5.03 3.009-6.586 8.501-6.586 11.318h24c0-2.791-1.657-8.28-6.59-11.314 1.292-1.348 2.09-3.172 2.09-5.186 0-4.143-3.358-7.5-7.5-7.5z"/></svg>
+          </div>
+        </div>
+    </nav>
+    <section id="section-main">
+        <div id="contenedor-form">
+            <form id="form">
+                <h1 id="titulo-form">CREAR CUENTA</h1>
+                <div class="form-input">
+                    <p class="input-titulo">Nombre</p>
+                    <input autocomplete="off" type="text" id="input-nombre" class="input" placeholder="Nombre">
+                    <p class="formato-error">Debe contener minimo 3 caracteres</p>
+                </div>
+                <div class="form-input">
+                    <p class="input-titulo">Correo electronico</p>
+                    <input autocomplete="off" type="text" id="input-email" class="input" placeholder="Correo electronico">
+                    <p class="formato-error">Debe ser el siguiente formato ejemplo@gmail.com</p>
+                </div>
+                <div class="form-input">
+                    <p class="input-titulo">Contraseña</p>
+                    <input autocomplete="off" type="text" id="input-password" class="input" placeholder="Contraseña">
+                    <p class="formato-error">Debe tener minimo 8 caracteres un numero y una letra</p>
+                </div>
+                <div class="form-input">
+                    <p class="input-titulo">Repetir contraseña</p>
+                    <input autocomplete="off" type="text" id="input-passwordConfirm" class="input" placeholder="Repetir contraseña">
+                    <p class="formato-error">La contraseña deben coincidir</p>
+                </div>
+                <div id="form-btn">
+                    <button id="btn" disabled>Registrarse</button>
+                </div>
+                <div id="form-subtitulo">
+                <p>¿Ya tienes una cuenta?</p> <a href="/login">Iniciar sesión</a>
+                </div>
+            </form>
+        </div>
+        <div id="contenedor-img">      
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-description">
+          <h1>Ayuda</h1>
+          <ul class="listItem"> 
+            <li class="li">Metodos de Pago</li>
+            <li class="li">Métodos de entrega Caracas</li>
+            <li class="li">Métodos de entrega Interior</li>
+            <li class="li">Política de Cambios</li>
+          </ul>
+        </div>
+        <div class="footer-description">
+          <h1>Acerca De Depofit</h1>
+          <ul class="listItem">
+            <li class="li">Quienes Somos?</li>
+            <li class="li">Nuestras tiendas</li>
+            <li class="li">Tarjetas de regalo</li>
+          </ul>
+        </div>
+      </footer>
+    
+   <script src="index.js"></script>
+</body>
+
+</html>
