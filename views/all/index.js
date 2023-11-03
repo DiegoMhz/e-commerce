@@ -135,8 +135,8 @@ const getZapatos = async () => {
       withCredentials: true
     }
   )
-  const zapatos = data[0].zapatos.filter(zapatos => zapatos.genero === 'Caballero')
-  console.log(zapatos);
+  const zapatos = data[0].zapatos
+  
   zapatos.forEach(element => {
     const tituloCard = element.titulo;
     const imgCard = element.miniatura;
@@ -206,7 +206,7 @@ const cartaSeleccionada = async (arrayZapatos) => {
   imgCard.forEach(imagen => {
     imagen.addEventListener('click', e => {
       const idZapato = e.target.parentElement.parentElement.id
-      window.location.pathname = `/productos/hombres/${idZapato}`
+      window.location.pathname = `/productos/all/${idZapato}`
     })
   });
 

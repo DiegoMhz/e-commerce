@@ -101,7 +101,7 @@ const getSugerencias = async () => {
     imgCard.forEach(imagen => {
       imagen.addEventListener('click', e => {
         const idZapato = e.target.parentElement.id
-        window.location.pathname = `/productos/hombres/${idZapato}`
+        window.location.pathname = `/productos/all/${idZapato}`
       })
     });
 }

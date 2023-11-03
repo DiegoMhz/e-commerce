@@ -42,11 +42,15 @@ app.use('/api/logout', logoutRouter);
 app.use('/', express.static(patch.join(__dirname, 'views', 'home')));
 app.use('/signup', express.static(patch.join(__dirname, 'views', 'registro')));
 app.use('/productos/hombres', express.static(patch.join(__dirname, 'views', 'hombre')));
-app.use('/productos/hombres/:id', express.static(patch.join(__dirname, 'views', 'producto')));
-app.use('/hombres/:id', express.static(patch.join(__dirname, 'views', 'hombre')));
+app.use('/productos/mujeres', express.static(patch.join(__dirname, 'views', 'mujeres')));
+app.use('/productos/all', express.static(patch.join(__dirname, 'views', 'all')));
+app.use('/productos/hombres/:id', express.static(patch.join(__dirname, 'views', 'productosHombres')));
+app.use('/productos/mujeres/:id', express.static(patch.join(__dirname, 'views', 'productosMujeres')));
+app.use('/productos/all/:id', express.static(patch.join(__dirname, 'views', 'productosAll')));
 app.use('/perfil', express.static(patch.join(__dirname, 'views', 'perfil')));
 app.use('/login', express.static(patch.join(__dirname, 'views', 'login')));
 app.use('*', express.static(patch.join(__dirname, 'views', '404')));
+
 
 
 

@@ -252,14 +252,14 @@ body{
     justify-content: center;
 }
 
-#mujeres-titulo{
+.titulo-negro{
     text-align: center;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     margin-bottom: 1rem;
 }
 
-#mujeres-titulo:hover{
+.titulo-negro:hover{
     color: rgb(101, 101, 101);
 }
 

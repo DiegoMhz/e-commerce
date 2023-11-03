@@ -97,7 +97,7 @@ const getZapatos = async () => {
   card.forEach(element => {
     element.addEventListener('click', e =>{
       const id = element.id
-      window.location.pathname = `/productos/hombres/${id}`
+      window.location.pathname = `/productos/all/${id}`
     })
   })
 }
@@ -221,10 +221,6 @@ btnRegistro.addEventListener('click', e => {
 
 imagenHome.addEventListener('click', e => {
     window.location.pathname = `/`
-})
-
-btnHombre.addEventListener('click', e => {
-    window.location.pathname = '/productos/hombres'
 })
 
 
