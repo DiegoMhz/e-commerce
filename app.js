@@ -46,7 +46,7 @@ app.use('/productos/mujeres', express.static(patch.join(__dirname, 'views', 'muj
 app.use('/productos/all', express.static(patch.join(__dirname, 'views', 'all')));
 app.use('/productos/hombres/:id', express.static(patch.join(__dirname, 'views', 'productosHombres')));
 app.use('/productos/mujeres/:id', express.static(patch.join(__dirname, 'views', 'productosMujeres')));
-app.use('/productos/all/:id', express.static(patch.join(__dirname, 'views', 'productosAll')));
+app.use('/productos/all/:id', express.static(patch.join(__dirname, 'views', 'productosALL')));
 app.use('/perfil', express.static(patch.join(__dirname, 'views', 'perfil')));
 app.use('/login', express.static(patch.join(__dirname, 'views', 'login')));
 app.use('*', express.static(patch.join(__dirname, 'views', '404')));
