@@ -47,16 +47,18 @@ const getZapatos = async () => {
       withCredentials: true
     }
   )
-
-
-
+  
   const zapatos = data[0].zapatos
 
   inputBuscar.addEventListener('input', e => {
-   const filtradoTitulo = zapatos.filter(element => element.titulo.toLowerCase().includes(e.target.value.toLowerCase()))
-   const filtradoMarca = zapatos.filter(element => element.marca.toLowerCase().includes(e.target.value.toLowerCase()))
-   console.log(filtradoTitulo);
-   console.log(filtradoMarca);
+    const quitarAcentos = (texto) => {
+      return texto
+        .normalize("NFD") // Normalizar caracteres a su forma descompuesta
+        .replace(/[\u0300-\u036f]/g, ""); // Eliminar acentos y diacríticos
+    }
+    
+   const filtradoTitulo = zapatos.filter(element => quitarAcentos(element.titulo).toLowerCase().includes(quitarAcentos(e.target.value).toLowerCase()))
+   const filtradoMarca = zapatos.filter(element => quitarAcentos(element.marca).toLowerCase().includes(quitarAcentos(e.target.value).toLowerCase()))
   })
 
   const zapatosMujeres = zapatos.filter(element => element.genero === 'Dama').splice(0,11)

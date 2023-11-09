@@ -30,7 +30,8 @@ body{
 }
 
 #nav-img img {
-    width: 100%
+    width: 100%;
+    cursor: pointer;
 }
 
 #nav-links {
@@ -318,6 +319,12 @@ body{
     border-radius: 50%;
     display: flex;
     fill: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#slider-btn-left:hover{
+    background: rgb(104, 104, 104);
 }
 
 #slider-btn-right{
@@ -329,6 +336,12 @@ body{
     border-radius: 50%;
     display: flex;
     fill: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#slider-btn-right:hover{
+    background: rgb(104, 104, 104);
 }
 
 #btn-left{
