@@ -52,7 +52,7 @@ const btnMenuRemove = document.querySelector('#menu-remove');
 const btnAgregarCarrito = document.querySelector('#btn-agregar');
 const inputTipoDeProducto = document.querySelectorAll('.input-tipoDeProdcuto');
 const imgDepofit = document.querySelector('#img-depofit');
-
+const inputBuscar = document.querySelector('#input')
 imgDepofit.addEventListener('click', e => {
   window.location.pathname = '/'
 })
@@ -80,11 +80,13 @@ const cokiesGet = async () => {
   }
 }
 
+
 const filtros = {
   marca: 'todos',
   minPrecio: 0,
   categoria: 'todos'
 }
+
 
 const filtrarProdcutos = (productos) => {
   const productosFiltrados = productos.filter(producto => {
@@ -129,14 +131,21 @@ const filtrarProdcutos = (productos) => {
   cartaSeleccionada(productosFiltrados);
 }
 
+
 const getZapatos = async () => {
   const { data } = await axios.get('/api/zapatos',
     {
       withCredentials: true
     }
   )
+
+  const ZapatosTodos = data[0].zapatos
   const zapatos = data[0].zapatos.filter(zapatos => zapatos.genero === 'Caballero')
+
+
   console.log(zapatos);
+
+
   zapatos.forEach(element => {
     const tituloCard = element.titulo;
     const imgCard = element.miniatura;
@@ -169,11 +178,113 @@ const getZapatos = async () => {
     contenedorProductos.appendChild(div)
   });
 
+
+  inputBuscar.addEventListener('input', e => {
+    const listaBusqueda = document.querySelector('#ul-busqueda-productos');
+
+    const busqueda = document.querySelector('#busqueda')
+
+    if (e.target.value === '') {
+      busqueda.classList.add('displaynone');
+      busqueda.classList.remove('displayflex');
+    }
+
+
+    else {
+      busqueda.classList.remove('displaynone');
+
+
+      busqueda.classList.add('displayflex');
+
+
+      const quitarAcentos = (texto) => {
+        return texto
+          .normalize("NFD") // Normalizar caracteres a su forma descompuesta
+          .replace(/[\u0300-\u036f]/g, ""); // Eliminar acentos y diacríticos
+      }
+
+
+      const filtrarZapatosInput = ZapatosTodos.filter(element => {
+        const textoFiltrar = quitarAcentos(e.target.value).toLowerCase();
+
+        const palabras = textoFiltrar.split(' ');
+      
+        const tituloSinAcentos = quitarAcentos(element.titulo).toLowerCase();
+
+        const descripcionSinAcentos = quitarAcentos(element.descripcion).toLowerCase();
+        
+        return palabras.every(palabra => 
+          tituloSinAcentos.includes(palabra) || descripcionSinAcentos.includes(palabra)
+        )
+        
+      })
+
+      console.log(filtrarZapatosInput);
+
+      listaBusqueda.innerHTML = ''
+
+      if (filtrarZapatosInput.length === 0) {
+        listaBusqueda.innerHTML = '<li class="sin-resultados">Disculpa, no encontramos ningun resultado.</li>'
+      }
+
+
+      else {
+        filtrarZapatosInput.forEach(element => {
+          const id = element._id;
+          const titulo = element.titulo;
+          const img = element.miniatura;
+          const marca = element.marca;
+          const precio = element.precio;
+          const li = document.createElement('li');
+          li.id = id
+          li.className = 'li-busqueda'
+          li.innerHTML = `<div class="img-busqueda">
+
+          <img class="img" src="${img}">
+
+          </div>
+
+         <div class="descripcion-busqueda">
+
+        <p class="busqueda-titulo-gris">${titulo}</p>
+
+         <p class="marca-busqueda">${marca}</p>
+
+        <span class="precio-busqueda">$${precio}.00</span>
+
+        </div>`
+
+          listaBusqueda.appendChild(li)
+          li.addEventListener('click', e => {
+            const id = li.id
+            window.location.pathname = `/productos/all/${id}`
+          })
+        });
+      }
+    }
+
+
+  })
+
+
+  document.addEventListener('click', e => {
+    if (inputBuscar && inputBuscar.contains(e.target) || busqueda && busqueda.contains(e.target)) {
+      console.log('click adentro');
+    }
+    else {
+      busqueda.classList.add('displaynone');
+      busqueda.classList.remove('displayflex');
+      console.log('click afuera');
+    }
+  });
+
+
   selectTipoDeProducto.addEventListener('input', e => {
     const value = e.target.value
     filtros.categoria = `${value}`
     filtrarProdcutos(zapatos)
   })
+
 
   selectMarca.addEventListener('input', e => {
     const value = e.target.value
@@ -182,12 +293,14 @@ const getZapatos = async () => {
     filtrarProdcutos(zapatos)
   })
 
+
   cartaSeleccionada(zapatos)
 
   // buscar.addEventListener('click', async e => {
   //   await axios.delete(`/api/zapatos/65030ef41e52b935d702e7dd`)
   // })
 }
+
 
 const agregarArray = async () => {
   const { data } = await axios.post('/api/zapatos', {
@@ -199,6 +312,7 @@ const agregarArray = async () => {
   )
   console.log(data);
 }
+
 
 const cartaSeleccionada = async (arrayZapatos) => {
   const svgCard = document.querySelectorAll('.div-svg-card');
@@ -344,12 +458,14 @@ const cartaSeleccionada = async (arrayZapatos) => {
   });
 }
 
+
 const numArticulosCarrito = () => {
   let numeroArticulos = listaArticulos.children.length;
   tituloCarrito.innerHTML = `Carrito de compra (${numeroArticulos})`;
   const numeroCarrito = document.querySelector('#span-cart');
   numeroCarrito.innerText = `${numeroArticulos}`
 };
+
 
 const getCarrito = async () => {
   const { data } = await axios.get('/api/carrito/', {
@@ -399,6 +515,7 @@ const getCarrito = async () => {
 
   });
 }
+
 
 const agregarCarrito = async (titulo, precio, imagen, talla) => {
   const cookies = await axios.get('/api/cookies',
@@ -460,7 +577,6 @@ const agregarCarrito = async (titulo, precio, imagen, talla) => {
     });
   }
 }
-
 
 
 const array = [
@@ -863,12 +979,9 @@ const array = [
 ]
 
 
-
 cart.addEventListener('click', e => {
   articulos.classList.toggle('cart-activado')
 })
-
-
 
 
 cokiesGet()

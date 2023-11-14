@@ -20,9 +20,14 @@ const botonSliderDerecha = document.querySelector('#btn-right');
 const botonSliderIzquierda = document.querySelector('#btn-left');
 const tituloNombreZapato = document.querySelector('#p-nombreZapato');
 const imgDepofit = document.querySelector('#img-depofit');
+const inputBuscar = document.querySelector('#input');
+
+
+let totalPrecioArticulos = 0
+
 
 imgDepofit.addEventListener('click', e => {
-  window.location.pathname = `/`
+    window.location.pathname = `/`
 })
 
 
@@ -47,11 +52,13 @@ const cokiesGet = async () => {
     }
 }
 
+
 const next = (boton) => {
     let cardFirst = boton.parentElement.parentElement.children[1].children[1];
     let contenedorCard = boton.parentElement.parentElement.children[1];
     contenedorCard.insertAdjacentElement('beforeend', cardFirst)
 }
+
 
 const prev = (boton) => {
     let cardLast = boton.parentElement.parentElement.children[1].children;
@@ -60,16 +67,17 @@ const prev = (boton) => {
     contenedorCard.insertAdjacentElement('afterbegin', cardLast);
 }
 
+
 botonSliderDerecha.addEventListener('click', e => {
     next(botonSliderDerecha);
 })
+
 
 botonSliderIzquierda.addEventListener('click', e => {
     prev(botonSliderIzquierda)
 })
 
 
-let totalPrecioArticulos = 0
 const getSugerencias = async () => {
     const { data } = await axios.get('/api/zapatos',
         {
@@ -99,10 +107,10 @@ const getSugerencias = async () => {
     });
     const imgCard = document.querySelectorAll('.img-card');
     imgCard.forEach(imagen => {
-      imagen.addEventListener('click', e => {
-        const idZapato = e.target.parentElement.id
-        window.location.pathname = `/productos/all/${idZapato}`
-      })
+        imagen.addEventListener('click', e => {
+            const idZapato = e.target.parentElement.id
+            window.location.pathname = `/productos/all/${idZapato}`
+        })
     });
 }
 
@@ -127,6 +135,106 @@ const getZapato = async () => {
     spanPrecio.innerText = `$${precio}.00`
     imagenZapato.src = imagen;
     tituloNombreZapato.innerText = `${titulo}`
+
+
+    inputBuscar.addEventListener('input', e => {
+        const listaBusqueda = document.querySelector('#ul-busqueda-productos');
+
+        const busqueda = document.querySelector('#busqueda')
+
+        if (e.target.value === '') {
+            busqueda.classList.add('displaynone');
+            busqueda.classList.remove('displayflex');
+        }
+
+
+        else {
+            busqueda.classList.remove('displaynone');
+
+
+            busqueda.classList.add('displayflex');
+
+
+            const quitarAcentos = (texto) => {
+                return texto
+                    .normalize("NFD") // Normalizar caracteres a su forma descompuesta
+                    .replace(/[\u0300-\u036f]/g, ""); // Eliminar acentos y diacríticos
+            }
+
+
+            const filtrarZapatosInput = zapatos.filter(element => {
+                const textoFiltrar = quitarAcentos(e.target.value).toLowerCase();
+
+                const palabras = textoFiltrar.split(' ');
+
+                const tituloSinAcentos = quitarAcentos(element.titulo).toLowerCase();
+
+                const descripcionSinAcentos = quitarAcentos(element.descripcion).toLowerCase();
+
+                return palabras.every(palabra =>
+                    tituloSinAcentos.includes(palabra) || descripcionSinAcentos.includes(palabra)
+                )
+
+            })
+
+            console.log(filtrarZapatosInput);
+
+            listaBusqueda.innerHTML = ''
+
+            if (filtrarZapatosInput.length === 0) {
+                listaBusqueda.innerHTML = '<li class="sin-resultados">Disculpa, no encontramos ningun resultado.</li>'
+            }
+
+
+            else {
+                filtrarZapatosInput.forEach(element => {
+                    const id = element._id;
+                    const titulo = element.titulo;
+                    const img = element.miniatura;
+                    const marca = element.marca;
+                    const precio = element.precio;
+                    const li = document.createElement('li');
+                    li.id = id
+                    li.className = 'li-busqueda'
+                    li.innerHTML = `<div class="img-busqueda">
+    
+              <img class="img" src="${img}">
+    
+              </div>
+    
+             <div class="descripcion-busqueda">
+    
+            <p class="busqueda-titulo-gris">${titulo}</p>
+    
+             <p class="marca-busqueda">${marca}</p>
+    
+            <span class="precio-busqueda">$${precio}.00</span>
+    
+            </div>`
+
+                    listaBusqueda.appendChild(li)
+                    li.addEventListener('click', e => {
+                        const id = li.id
+                        window.location.pathname = `/productos/all/${id}`
+                    })
+                });
+            }
+        }
+
+
+    })
+
+
+    document.addEventListener('click', e => {
+        if (inputBuscar && inputBuscar.contains(e.target) || busqueda && busqueda.contains(e.target)) {
+            console.log('click adentro');
+        }
+        else {
+            busqueda.classList.add('displaynone');
+            busqueda.classList.remove('displayflex');
+            console.log('click afuera');
+        }
+    });
 
 
     btnAgregarArticulo.addEventListener('click', e => {
