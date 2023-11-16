@@ -11,7 +11,7 @@
 
 let totalPrecioArticulos = 0
 let sliderSection = document.querySelectorAll('.card');
-const cart = document.querySelector('#cart');
+const cart = document.querySelectorAll('#cart');
 const precioTotalCarrito = document.querySelector('#precio-total');
 const articulos = document.querySelector('.carrito-articulos');
 const listaArticulos = document.querySelector('#listaArticulos');
@@ -24,20 +24,43 @@ const imagenHome = document.querySelector('#img-depofit');
 const btnHombre = document.querySelector('#hombres');
 const contenedoCardMujeres = document.querySelector('#contenedor-card-mujeres');
 const contenedoCardHombres = document.querySelector('#contenedor-card-hombres');
-const inputBuscar = document.querySelector('#input')
+const inputBuscar = document.querySelector('#input');
+const inputTelefono = document.querySelector('#input-telefono');
+const btnBorrarSugerencias = document.querySelector('#svgBorrarSugerencias');
+const btnBuscarSugerencias = document.querySelector('#lupa-telefono');
+const svgMenutelefono = document.querySelector('#menu-telefono');
+const menuTelefono = document.querySelector('#linksTelefono')
 
-
-
-
-cart.addEventListener('click', e => {
-  articulos.classList.toggle('cart-activado')
+svgMenutelefono.addEventListener('click', e => {
+  menuTelefono.classList.toggle('menu-visible');
 })
+
+btnBuscarSugerencias.addEventListener('click', e =>{
+  const busqueda = document.querySelector('#busqueda-telefono');
+  busqueda.classList.add('displayflex');
+  busqueda.classList.remove('displaynone');
+})
+
+btnBorrarSugerencias.addEventListener('click', e => {
+  const busqueda = document.querySelector('#busqueda-telefono')
+  busqueda.classList.add('displaynone');
+  busqueda.classList.remove('displayflex');
+})
+
+cart.forEach(element => {
+  element.addEventListener('click', e => {
+    articulos.classList.toggle('cart-activado')
+  })
+});
+
 
 const numArticulosCarrito = () => {
   let numeroArticulos = listaArticulos.children.length;
   tituloCarrito.innerHTML = `Carrito de compra (${numeroArticulos})`;
   const numeroCarrito = document.querySelector('#span-cart');
+  const numeroCarritoTelefono = document.querySelector('#span-cart-telefono');
   numeroCarrito.innerText = `${numeroArticulos}`
+  numeroCarritoTelefono.innerText = `${numeroArticulos}`
 }
 
 numArticulosCarrito()
@@ -135,6 +158,84 @@ const getZapatos = async () => {
         });
       }
     }
+
+
+  })
+
+  inputTelefono.addEventListener('input', e => {
+    const listaBusqueda = document.querySelector('#ul-busqueda-productos-telefono');
+    const busqueda = document.querySelector('#busqueda-telefono')
+
+      busqueda.classList.remove('displaynone');
+
+
+      busqueda.classList.add('displayflex');
+
+
+      const quitarAcentos = (texto) => {
+        return texto
+          .normalize("NFD") // Normalizar caracteres a su forma descompuesta
+          .replace(/[\u0300-\u036f]/g, ""); // Eliminar acentos y diacríticos
+      }
+
+
+      const filtrarZapatosInput = zapatos.filter(element => {
+        const textoFiltrar = quitarAcentos(e.target.value).toLowerCase();
+
+        const palabras = textoFiltrar.split(' ');
+      
+        const tituloSinAcentos = quitarAcentos(element.titulo).toLowerCase();
+
+        const descripcionSinAcentos = quitarAcentos(element.descripcion).toLowerCase();
+        
+        return palabras.every(palabra => 
+          tituloSinAcentos.includes(palabra) || descripcionSinAcentos.includes(palabra)
+        )
+        
+      })
+
+
+      listaBusqueda.innerHTML = ''
+
+      if (filtrarZapatosInput.length === 0) {
+        listaBusqueda.innerHTML = '<li class="sin-resultados">Disculpa, no encontramos ningun resultado.</li>'
+      }
+
+
+      else {
+        filtrarZapatosInput.forEach(element => {
+          const id = element._id;
+          const titulo = element.titulo;
+          const img = element.miniatura;
+          const marca = element.marca;
+          const precio = element.precio;
+          const li = document.createElement('li');
+          li.id = id
+          li.className = 'li-busqueda'
+          li.innerHTML = `<div class="img-busqueda">
+
+          <img class="img" src="${img}">
+
+          </div>
+
+         <div class="descripcion-busqueda">
+
+        <p class="busqueda-titulo-gris">${titulo}</p>
+
+         <p class="marca-busqueda">${marca}</p>
+
+        <span class="precio-busqueda">$${precio}.00</span>
+
+        </div>`
+
+          listaBusqueda.appendChild(li)
+          li.addEventListener('click', e => {
+            const id = li.id
+            window.location.pathname = `/productos/all/${id}`
+          })
+        });
+      }
+    
 
 
   })

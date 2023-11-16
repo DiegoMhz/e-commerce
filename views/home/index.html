@@ -12,6 +12,19 @@
 
 <body>
   <nav id="nav">
+
+    <div id="svg-menu-telefono">
+
+      <svg class="svg" id="menu-telefono" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+        stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m22 16.75c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75z"
+          fill-rule="nonzero" />
+      </svg>
+
+    </div>
+
+
     <div id="nav-img">
       <img id="img-depofit"
         src="https://depofit.com/cdn/shop/files/unnamed-1_41a1f3de-0e1b-4c9c-acc1-8ac28da81be4_1600x.png?v=1621865774">
@@ -20,9 +33,19 @@
 
 
     <div id="nav-links">
-      <a href="/productos/hombres">Hombre</a>
-      <a href="/productos/mujeres">Mujer</a>
-      <a href="/productos/nutricion">Nutricion Deportiva</a>
+      <div id="links-escritorio">
+        <a href="/productos/hombres">Hombre</a>
+        <a href="/productos/mujeres">Mujer</a>
+        <a href="/productos/nutricion">Nutricion Deportiva</a>
+      </div>
+
+
+      <div id="linksTelefono" class="links-telefono">
+        <a href="/productos/hombres">Hombre</a>
+        <a href="/productos/mujeres">Mujer</a>
+        <a href="/productos/nutricion">Nutricion Deportiva</a>
+        <a href="/perfil">Perfil</a>
+      </div>
     </div>
 
 
@@ -54,6 +77,31 @@
       </div>
     </div>
 
+    <div id="nav-telefono-lupa">
+
+
+      <div class="contenedor-svg">
+        <span id="span-cart-telefono">1</span>
+        <svg xmlns="http://www.w3.org/2000/svg" id="cart" class="svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
+        </svg>
+      </div>
+
+
+      <div class="contenedor-svg">
+
+        <svg class="svg" id="lupa-telefono" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+          stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
+            fill-rule="nonzero" />
+        </svg>
+
+      </div>
+
+
+    </div>
 
 
     <div class="carrito-articulos">
@@ -75,13 +123,51 @@
 
     <div class="displaynone" id="busqueda">
 
-      
+
       <div class="busqueda-productos">
 
         <span class="text-gray-busqueda">PRODUCTOS</span>
 
         <ul id="ul-busqueda-productos">
-          
+
+        </ul>
+
+      </div>
+
+
+    </div>
+
+
+    <div id="busqueda-telefono" class="displaynone">
+
+
+
+      <div id="div-input-telefono">
+
+        <div id="div-borrar-buscador">
+
+          <svg clip-rule="evenodd" id="svgBorrarSugerencias" fill-rule="evenodd" stroke-linejoin="round"
+            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m9.474 5.209s-4.501 4.505-6.254 6.259c-.147.146-.22.338-.22.53s.073.384.22.53c1.752 1.754 6.252 6.257 6.252 6.257.145.145.336.217.527.217.191-.001.383-.074.53-.221.293-.293.294-.766.004-1.057l-4.976-4.976h14.692c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-14.692l4.978-4.979c.289-.289.287-.761-.006-1.054-.147-.147-.339-.221-.53-.221-.191-.001-.38.071-.525.215z"
+              fill-rule="nonzero" />
+
+          </svg>
+
+        </div>
+
+        <input type="text" id="input-telefono" autocomplete="off" placeholder="Buscar">
+
+
+      </div>
+
+
+      <div class="busqueda-productos">
+
+        <span class="text-gray-busqueda">PRODUCTOS</span>
+
+        <ul id="ul-busqueda-productos-telefono">
+
         </ul>
 
       </div>
