@@ -309,26 +309,35 @@ const getZapatos = async () => {
 
 getZapatos()
 
+
 const cokiesGet = async () => {
   const { data } = await axios.get('/api/cookies',
-    {
-      withCredentials: true
-    }
+      {
+          withCredentials: true
+      }
   )
+  const perfilTelefono = document.querySelector('#perfil-telefono');
   const usuarioValido = data.acessToken
   if (usuarioValido === undefined) {
-    console.log('NO ME DA LOS COOKIES');
-    user.addEventListener('click', e => {
-      window.location.pathname = `/login`
-    })
+      console.log('NO ME DA LOS COOKIES');
+      user.addEventListener('click', e => {
+          window.location.pathname = `/login`
+      })
+      perfilTelefono.addEventListener('click', e => {
+          window.location.pathname = `/login`
+      })
   }
   else {
-    console.log('SI ME DA LAS COOKIES');
-    user.addEventListener('click', e => {
-      window.location.pathname = `/perfil`
-    })
+      console.log('SI ME DA LAS COOKIES');
+      user.addEventListener('click', e => {
+          window.location.pathname = `/perfil`
+      })
+      perfilTelefono.addEventListener('click', e => {
+          window.location.pathname = `/perfil`
+      })
   }
 }
+
 cokiesGet()
 
 

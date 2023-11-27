@@ -14,81 +14,170 @@
 
     <nav id="nav">
 
-
-        <div id="nav-img">
-            <img id="img-depofit"
-                src="https://depofit.com/cdn/shop/files/unnamed-1_41a1f3de-0e1b-4c9c-acc1-8ac28da81be4_1600x.png?v=1621865774">
+        <div id="svg-menu-telefono">
+    
+          <svg class="svg" id="menu-telefono" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m22 16.75c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75z"
+              fill-rule="nonzero" />
+          </svg>
+    
         </div>
-
-
+    
+    
+        <div id="nav-img">
+          <img id="img-depofit"
+            src="https://depofit.com/cdn/shop/files/unnamed-1_41a1f3de-0e1b-4c9c-acc1-8ac28da81be4_1600x.png?v=1621865774">
+        </div>
+    
+    
+    
         <div id="nav-links">
+          <div id="links-escritorio">
             <a href="/productos/hombres">Hombre</a>
             <a href="/productos/mujeres">Mujer</a>
             <a href="/productos/nutricion">Nutricion Deportiva</a>
+          </div>
+    
+    
+          <div id="linksTelefono" class="links-telefono">
+            <a href="/productos/hombres">Hombre</a>
+            <a href="/productos/mujeres">Mujer</a>
+            <a href="/productos/nutricion">Nutricion Deportiva</a>
+            <a id="perfil-telefono">Perfil</a>
+          </div>
         </div>
-
-
+    
+    
+    
         <div id="nav-input">
-            <input autocomplete="off" id="input" type="text" placeholder="Buscar" autocomplete="off">
-            <svg width="24" id="svg-buscar" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
-                clip-rule="evenodd">
-                <path
-                    d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z" />
-            </svg>
+          <input autocomplete="off" id="input" type="text" placeholder="Buscar" autocomplete="off">
+          <svg width="24" id="svg-buscar" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+            clip-rule="evenodd">
+            <path
+              d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z" />
+          </svg>
         </div>
-
-
+    
+    
+    
         <div id="nav-cart">
-            <div class="contenedor-svg">
-                <span id="span-cart">1</span>
-                <svg xmlns="http://www.w3.org/2000/svg" id="cart" class="svg" width="24" height="24"
-                    viewBox="0 0 24 24">
-                    <path
-                        d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
-                </svg>
-            </div>
-            <div class="contenedor-svg">
-                <svg xmlns="http://www.w3.org/2000/svg" id="user" class="svg" width="24" height="24"
-                    viewBox="0 0 24 24">
-                    <path
-                        d="M12 2c3.032 0 5.5 2.467 5.5 5.5 0 1.458-.483 3.196-3.248 5.59 4.111 1.961 6.602 5.253 7.482 8.909h-19.486c.955-4.188 4.005-7.399 7.519-8.889-1.601-1.287-3.267-3.323-3.267-5.61 0-3.033 2.468-5.5 5.5-5.5zm0-2c-4.142 0-7.5 3.357-7.5 7.5 0 2.012.797 3.834 2.086 5.182-5.03 3.009-6.586 8.501-6.586 11.318h24c0-2.791-1.657-8.28-6.59-11.314 1.292-1.348 2.09-3.172 2.09-5.186 0-4.143-3.358-7.5-7.5-7.5z" />
-                </svg>
-            </div>
+          <div class="contenedor-svg">
+            <span id="span-cart">1</span>
+            <svg xmlns="http://www.w3.org/2000/svg" id="cart" class="svg" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
+            </svg>
+          </div>
+          <div class="contenedor-svg">
+            <svg xmlns="http://www.w3.org/2000/svg" id="user" class="svg" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M12 2c3.032 0 5.5 2.467 5.5 5.5 0 1.458-.483 3.196-3.248 5.59 4.111 1.961 6.602 5.253 7.482 8.909h-19.486c.955-4.188 4.005-7.399 7.519-8.889-1.601-1.287-3.267-3.323-3.267-5.61 0-3.033 2.468-5.5 5.5-5.5zm0-2c-4.142 0-7.5 3.357-7.5 7.5 0 2.012.797 3.834 2.086 5.182-5.03 3.009-6.586 8.501-6.586 11.318h24c0-2.791-1.657-8.28-6.59-11.314 1.292-1.348 2.09-3.172 2.09-5.186 0-4.143-3.358-7.5-7.5-7.5z" />
+            </svg>
+          </div>
         </div>
-
-
+    
+        <div id="nav-telefono-lupa">
+    
+    
+          <div class="contenedor-svg">
+            <span id="span-cart-telefono">1</span>
+            <svg xmlns="http://www.w3.org/2000/svg" id="cart" class="svg" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
+            </svg>
+          </div>
+    
+    
+          <div class="contenedor-svg">
+    
+            <svg class="svg" id="lupa-telefono" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+              stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
+                fill-rule="nonzero" />
+            </svg>
+    
+          </div>
+    
+    
+        </div>
+    
+    
         <div class="carrito-articulos">
-            <div id="div-titulo-carrito">
-                <p id="titulo-carrito">Carrito de compra ()</p>
-            </div>
-            <ul id="listaArticulos">
-            </ul>
-            <div id="div-precio-articulos">
-                <p id="titulo-precio">Total:</p>
-                <p id="precio-total">00.00$</p>
-            </div>
-            <div id="div-btn-articulos">
-                <button id="btn-pedidos">Terminar pedido</button>
-                <a href="">ir al carrito</a>
-            </div>
+          <div id="div-titulo-carrito">
+            <p id="titulo-carrito">Carrito de compra ()</p>
+          </div>
+          <ul id="listaArticulos">
+          </ul>
+          <div id="div-precio-articulos">
+            <p id="titulo-precio">Total:</p>
+            <p id="precio-total">00.00$</p>
+          </div>
+          <div id="div-btn-articulos">
+            <button id="btn-pedidos">Terminar pedido</button>
+            <a href="">ir al carrito</a>
+          </div>
         </div>
-
+    
+    
         <div class="displaynone" id="busqueda">
-
-
-            <div class="busqueda-productos">
-
-                <span class="text-gray-busqueda">PRODUCTOS</span>
-
-                <ul id="ul-busqueda-productos">
-
-                </ul>
-
-            </div>
-
-
+    
+    
+          <div class="busqueda-productos">
+    
+            <span class="text-gray-busqueda">PRODUCTOS</span>
+    
+            <ul id="ul-busqueda-productos">
+    
+            </ul>
+    
+          </div>
+    
+    
         </div>
-
+    
+    
+        <div id="busqueda-telefono" class="displaynone">
+    
+    
+    
+          <div id="div-input-telefono">
+    
+            <div id="div-borrar-buscador">
+    
+              <svg clip-rule="evenodd" id="svgBorrarSugerencias" fill-rule="evenodd" stroke-linejoin="round"
+                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="m9.474 5.209s-4.501 4.505-6.254 6.259c-.147.146-.22.338-.22.53s.073.384.22.53c1.752 1.754 6.252 6.257 6.252 6.257.145.145.336.217.527.217.191-.001.383-.074.53-.221.293-.293.294-.766.004-1.057l-4.976-4.976h14.692c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-14.692l4.978-4.979c.289-.289.287-.761-.006-1.054-.147-.147-.339-.221-.53-.221-.191-.001-.38.071-.525.215z"
+                  fill-rule="nonzero" />
+    
+              </svg>
+    
+            </div>
+    
+            <input type="text" id="input-telefono" autocomplete="off" placeholder="Buscar">
+    
+    
+          </div>
+    
+    
+          <div class="busqueda-productos">
+    
+            <span class="text-gray-busqueda">PRODUCTOS</span>
+    
+            <ul id="ul-busqueda-productos-telefono">
+    
+            </ul>
+    
+          </div>
+    
+    
+        </div>
+    
+    
+    
     </nav>
 
 

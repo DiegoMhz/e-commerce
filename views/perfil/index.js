@@ -1,6 +1,6 @@
 
 const articulos = document.querySelector('.carrito-articulos');
-const cart = document.querySelector('#cart');
+const cart = document.querySelectorAll('#cart');
 const imgDepofit = document.querySelector('#img-depofit');
 const btnSalir = document.querySelector('#btn-salir');
 const precioTotalCarrito = document.querySelector('#precio-total');
@@ -10,10 +10,42 @@ const nombre = document.querySelector('#nombre')
 let totalPrecioArticulos = 0
 
 
+const inputTelefono = document.querySelector('#input-telefono');
+const btnBorrarSugerenciasTLF = document.querySelector('#svgBorrarSugerencias');
+const btnBuscarSugerenciasTLF = document.querySelector('#lupa-telefono');
+const svgMenutelefono = document.querySelector('#menu-telefono');
+const menuTelefono = document.querySelector('#linksTelefono');
+
+
+
+cart.forEach(element => {
+    element.addEventListener('click', e => {
+        articulos.classList.toggle('cart-activado')
+    })
+});
+
+svgMenutelefono.addEventListener('click', e => {
+    menuTelefono.classList.toggle('menu-visible');
+})
+
+btnBuscarSugerenciasTLF.addEventListener('click', e => {
+    const busqueda = document.querySelector('#busqueda-telefono');
+    busqueda.classList.add('displayflex');
+    busqueda.classList.remove('displaynone');
+})
+
+btnBorrarSugerenciasTLF.addEventListener('click', e => {
+    const busqueda = document.querySelector('#busqueda-telefono')
+    busqueda.classList.add('displaynone');
+    busqueda.classList.remove('displayflex');
+})
+
+
 btnSalir.addEventListener('click', async e => {
   const { data } = axios.get('/api/logout', {
     withCredentials: true
   })
+  console.log(data);
   window.location.pathname = '/'
 })
 
@@ -21,18 +53,16 @@ imgDepofit.addEventListener('click', e => {
   window.location.pathname = `/`
 })
 
-cart.addEventListener('click', e => {
-    articulos.classList.toggle('cart-activado')
-  })
-
 
   const numArticulosCarrito = () => {
     let numeroArticulos = listaArticulos.children.length;
+    const tituloCarrito = document.querySelector('#titulo-carrito')
     tituloCarrito.innerHTML = `Carrito de compra (${numeroArticulos})`;
     const numeroCarrito = document.querySelector('#span-cart');
+    const numeroCarritoTelefono = document.querySelector('#span-cart-telefono');
     numeroCarrito.innerText = `${numeroArticulos}`
-  };
-  
+    numeroCarritoTelefono.innerText = `${numeroArticulos}`
+};
 
   const getCarrito = async () => {
     const { data } = await axios.get('/api/carrito/', {

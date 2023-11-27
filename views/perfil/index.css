@@ -352,10 +352,340 @@ main{
 }
 
 
-/* CLASES PARA JS */
+#nav-telefono-lupa {
+    display: none;
+}
+
+#svg-menu-telefono {
+    display: none;
+}
+
+#busqueda-telefono {
+    background-color: #f1f1f1;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    color: black;
+    right: 0px;
+    left: 0;
+    gap: 1rem;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+
+#ul-busqueda-productos-telefono {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 27rem;
+    overflow: auto;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#div-borrar-buscador {
+    display: flex;
+    justify-content: end;
+    font-size: 1.25rem;
+    color: black
+}
+
+#input-telefono {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem;
+    border-radius: 50rem;
+    border: 1px solid rgb(161, 158, 158);
+    outline: none;
+}
+
+#input-telefono:focus {
+    border: 2px solid rgb(245, 150, 77);
+}
+
+#div-borrar-buscador {
+    width: 2rem;
+    height: 2rem;
+}
+
+#div-input-telefono {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    fill: #6e6d6d;
+}
+
+#svgBorrarSugerencias {
+    width: 100%;
+    height: 100%;
+}
+
+.links-telefono {
+    top: 5rem;
+    position: absolute;
+    left: -13rem;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    transition: all 0.4s;
+}
+
+.links-telefono a {
+    padding: 1rem;
+}
+
+.sin-resultados {
+    padding: 1rem;
+}
+
+#span-cart-telefono {
+    position: absolute;
+    color: white;
+    border-radius: 10px;
+    background-color: #494949;
+    top: 0;
+    left: 0;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+#titulo-filtrarPor{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-top: 1px solid #c8c8c8;
+    border-bottom: 1px solid #c8c8c8;
+}
+
+
+#titulo-filtrarPor svg{
+    width: 2rem;
+}
+
+#contenedor-filtros-telefono{
+    display: none;
+}
+
+#div-filtro-telefono{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 50;
+    background-color: #0000003d;
+}
+
+#divtituloFitro{
+    padding: 1rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+#filtros-telefono{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: white;
+    width: 80%;
+    position: absolute;
+    right: 0;
+    padding: 1rem;
+    height: 100vh;
+}
+
+
+#cerrar-filtros{
+    width: 20%;
+    position: relative;
+}
+
+
+#btnCerrarFiltro{
+    position: absolute;
+    right: 0;
+    padding: 0.8rem;
+    border: none;
+    background-color: #777777;
+    font-size: 1.5rem;
+    color: #fbfbfb;
+}
+
+.displaynone{
+    display: none;
+}
+
+.activado{
+    opacity: 1;
+    padding: 1rem;
+    visibility: visible;
+    height: 100%;
+}  
 
 .cart-activado {
     right: 0;
     left: 50%;
     opacity: 1;
 }
+
+.seleccionado{
+    background-color: black;
+    color: white;
+}
+
+
+.menu-visible {
+    left: 0;
+    width: 100%;
+}
+
+.displayflex{
+    display: flex;
+}
+
+
+@media (max-width: 768px) {
+    #contenedor-form{
+        width: 100%;
+    }
+    #section-main{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    #img-contenedor {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    #section-contenedor {
+        display: flex;
+        gap: 6rem;
+        flex-wrap: wrap;
+    }
+
+    main{
+        padding-left: 2rem;
+        padding-right: 2rem;
+
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    #section-contenedor {
+        display: flex;
+        gap: 6rem;
+        flex-wrap: wrap;
+    }
+
+    #nav-img {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #nav-img img {
+        width: 12rem;
+        cursor: pointer;
+    }
+
+    #nav-telefono-lupa {
+        display: flex;
+    }
+
+    .li-busqueda {
+        width: 100%;
+    }
+
+    #nav {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    #nav-cart {
+        display: none;
+    }
+
+
+    #svg-menu-telefono {
+        width: 2.5rem;
+        height: 2.5rem;
+        display: block;
+    }
+
+    #nav-input {
+        display: none;
+    }
+
+    .cart-activado {
+        left: 0;
+    }
+
+    #links-escritorio {
+        display: none;
+    }
+
+    #img-contenedor {
+        flex-direction: column;
+    }
+
+    #footer {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 350px) {
+
+    #section-contenedor {
+        display: flex;
+        gap: 6rem;
+        flex-wrap: wrap;
+    }
+
+    main{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    #img-contenedor {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    #nav-img {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #nav-img img {
+        width: 10rem;
+        cursor: pointer;
+    }
+
+    #svg-menu-telefono {
+        width: 2.5rem;
+    }
+
+    .contenedor-svg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.8rem;
+        height: 100%;
+        position: relative;
+        padding: 0;
+    }
+
+    #span-cart-telefono {
+        left: -5px;
+        top: -5px;
+    }
+}
+

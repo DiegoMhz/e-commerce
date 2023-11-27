@@ -36,7 +36,7 @@
 
 
 const inputPrecio = document.querySelector('#input-precio');
-const cart = document.querySelector('#cart');
+const cart = document.querySelectorAll('#cart');
 const articulos = document.querySelector('.carrito-articulos');
 const listaArticulos = document.querySelector('#listaArticulos');
 const tituloCarrito = document.querySelector('#titulo-carrito');
@@ -44,10 +44,9 @@ const precioTotalCarrito = document.querySelector('#precio-total');
 const btnBorrar = document.querySelectorAll('.borrar-articulo');
 const contenedorProductos = document.querySelector('#contenedor-productos');
 const user = document.querySelector('#user');
-const btnTipoDeProducto = document.querySelector('#filtrar-tipoDeProducto');
-const btnMarcas = document.querySelector('#filtrarMarca')
-const selectTipoDeProducto = document.querySelector('#filtrar-TipoDeProducto')
-const selectMarca = document.querySelector('#filtrarMarca')
+const selectTipoDeProducto = document.querySelectorAll('#select-tipoDeProducto');
+const selectMarca = document.querySelectorAll('#select-marcas');
+console.log(selectMarca, selectTipoDeProducto);
 const btnMenuRemove = document.querySelector('#menu-remove');
 const btnAgregarCarrito = document.querySelector('#btn-agregar');
 const inputTipoDeProducto = document.querySelectorAll('.input-tipoDeProdcuto');
@@ -57,6 +56,46 @@ const inputBuscar = document.querySelector('#input');
 
 let totalPrecioArticulos = 0
 
+// TELEFONO
+
+const inputTelefono = document.querySelector('#input-telefono');
+const btnBorrarSugerenciasTLF = document.querySelector('#svgBorrarSugerencias');
+const btnBuscarSugerenciasTLF = document.querySelector('#lupa-telefono');
+const svgMenutelefono = document.querySelector('#menu-telefono');
+const menuTelefono = document.querySelector('#linksTelefono');
+const btnMostrarFiltroTlf = document.querySelector('#svgfiltroTelefono');
+const btnCerrarFiltroTLF = document.querySelector('#btnCerrarFiltro');
+
+
+btnCerrarFiltroTLF.addEventListener('click', e => {
+  const menuFiltro = document.querySelector('#div-filtro-telefono');
+  menuFiltro.classList.remove('displayflex');
+  menuFiltro.classList.add('displaynone');
+})
+
+btnMostrarFiltroTlf.addEventListener('click', e => {
+  const menuFiltro = document.querySelector('#div-filtro-telefono');
+  menuFiltro.classList.add('displayflex');
+  menuFiltro.classList.remove('displaynone');
+})
+
+svgMenutelefono.addEventListener('click', e => {
+  menuTelefono.classList.toggle('menu-visible');
+})
+
+btnBuscarSugerenciasTLF.addEventListener('click', e => {
+  const busqueda = document.querySelector('#busqueda-telefono');
+  busqueda.classList.add('displayflex');
+  busqueda.classList.remove('displaynone');
+})
+
+btnBorrarSugerenciasTLF.addEventListener('click', e => {
+  const busqueda = document.querySelector('#busqueda-telefono')
+  busqueda.classList.add('displaynone');
+  busqueda.classList.remove('displayflex');
+})
+
+
 
 imgDepofit.addEventListener('click', e => {
   window.location.pathname = '/'
@@ -64,24 +103,32 @@ imgDepofit.addEventListener('click', e => {
 
 
 
+
 const cokiesGet = async () => {
   const { data } = await axios.get('/api/cookies',
-    {
-      withCredentials: true
-    }
+      {
+          withCredentials: true
+      }
   )
+  const perfilTelefono = document.querySelector('#perfil-telefono');
   const usuarioValido = data.acessToken
   if (usuarioValido === undefined) {
-    console.log('NO ME DA LOS COOKIES');
-    user.addEventListener('click', e => {
-      window.location.pathname = `/login`
-    })
+      console.log('NO ME DA LOS COOKIES');
+      user.addEventListener('click', e => {
+          window.location.pathname = `/login`
+      })
+      perfilTelefono.addEventListener('click', e => {
+          window.location.pathname = `/login`
+      })
   }
   else {
-    console.log('SI ME DA LAS COOKIES');
-    user.addEventListener('click', e => {
-      window.location.pathname = `/perfil`
-    })
+      console.log('SI ME DA LAS COOKIES');
+      user.addEventListener('click', e => {
+          window.location.pathname = `/perfil`
+      })
+      perfilTelefono.addEventListener('click', e => {
+          window.location.pathname = `/perfil`
+      })
   }
 }
 
@@ -182,6 +229,83 @@ const getZapatos = async () => {
     contenedorProductos.appendChild(div)
   });
 
+  inputTelefono.addEventListener('input', e => {
+    const listaBusqueda = document.querySelector('#ul-busqueda-productos-telefono');
+    const busqueda = document.querySelector('#busqueda-telefono')
+
+    busqueda.classList.remove('displaynone');
+
+
+    busqueda.classList.add('displayflex');
+
+
+    const quitarAcentos = (texto) => {
+      return texto
+        .normalize("NFD") // Normalizar caracteres a su forma descompuesta
+        .replace(/[\u0300-\u036f]/g, ""); // Eliminar acentos y diacríticos
+    }
+
+
+    const filtrarZapatosInput = zapatos.filter(element => {
+      const textoFiltrar = quitarAcentos(e.target.value).toLowerCase();
+
+      const palabras = textoFiltrar.split(' ');
+
+      const tituloSinAcentos = quitarAcentos(element.titulo).toLowerCase();
+
+      const descripcionSinAcentos = quitarAcentos(element.descripcion).toLowerCase();
+
+      return palabras.every(palabra =>
+        tituloSinAcentos.includes(palabra) || descripcionSinAcentos.includes(palabra)
+      )
+
+    })
+
+
+    listaBusqueda.innerHTML = ''
+
+    if (filtrarZapatosInput.length === 0) {
+      listaBusqueda.innerHTML = '<li class="sin-resultados">Disculpa, no encontramos ningun resultado.</li>'
+    }
+
+
+    else {
+      filtrarZapatosInput.forEach(element => {
+        const id = element._id;
+        const titulo = element.titulo;
+        const img = element.miniatura;
+        const marca = element.marca;
+        const precio = element.precio;
+        const li = document.createElement('li');
+        li.id = id
+        li.className = 'li-busqueda'
+        li.innerHTML = `<div class="img-busqueda">
+
+          <img class="img" src="${img}">
+
+          </div>
+
+         <div class="descripcion-busqueda">
+
+        <p class="busqueda-titulo-gris">${titulo}</p>
+
+         <p class="marca-busqueda">${marca}</p>
+
+        <span class="precio-busqueda">$${precio}.00</span>
+
+        </div>`
+
+        listaBusqueda.appendChild(li)
+        li.addEventListener('click', e => {
+          const id = li.id
+          window.location.pathname = `/productos/all/${id}`
+        })
+      });
+    }
+
+
+
+  })
 
   inputBuscar.addEventListener('input', e => {
 
@@ -191,7 +315,7 @@ const getZapatos = async () => {
 
     if (e.target.value === '') {
       busqueda.classList.add('displaynone');
-      
+
       busqueda.classList.remove('displayflex');
     }
 
@@ -285,18 +409,21 @@ const getZapatos = async () => {
   });
 
 
-  selectTipoDeProducto.addEventListener('input', e => {
-    const value = e.target.value
-    filtros.categoria = `${value}`
-    filtrarProdcutos(zapatos)
-  })
+  selectTipoDeProducto.forEach(element => {
+    element.addEventListener('input', e => {
+      const value = e.target.value
+      filtros.categoria = `${value}`
+      filtrarProdcutos(zapatos)
+    })
+  });
 
-  selectMarca.addEventListener('input', e => {
-    const value = e.target.value
-    console.log(value);
-    filtros.marca = `${value}`
-    filtrarProdcutos(zapatos)
-  })
+  selectMarca.forEach(element => {
+    element.addEventListener('input', e => {
+      const value = e.target.value
+      filtros.marca = `${value}`
+      filtrarProdcutos(zapatos)
+    })
+  });
 
   cartaSeleccionada(zapatos)
 
@@ -470,7 +597,9 @@ const numArticulosCarrito = () => {
   let numeroArticulos = listaArticulos.children.length;
   tituloCarrito.innerHTML = `Carrito de compra (${numeroArticulos})`;
   const numeroCarrito = document.querySelector('#span-cart');
+  const numeroCarritoTelefono = document.querySelector('#span-cart-telefono');
   numeroCarrito.innerText = `${numeroArticulos}`
+  numeroCarritoTelefono.innerText = `${numeroArticulos}`
 };
 
 
@@ -989,10 +1118,12 @@ const array = [
 ]
 
 
+cart.forEach(element => {
+  element.addEventListener('click', e => {
+    articulos.classList.toggle('cart-activado')
+  })
+});
 
-cart.addEventListener('click', e => {
-  articulos.classList.toggle('cart-activado')
-})
 
 
 

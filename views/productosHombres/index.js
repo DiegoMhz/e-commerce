@@ -2,7 +2,7 @@ const imagenZapato = document.querySelector('#imagenZapato');
 const informacionDeEnvio = document.querySelector('#informacion-de-envios');
 const btnDescripcion = document.querySelector('#descripcion');
 const politicaDeCambios = document.querySelector('#politica-de-cambios');
-const cart = document.querySelector('#cart');
+const cart = document.querySelectorAll('#cart');
 const articulos = document.querySelector('.carrito-articulos');
 const btnSuma = document.querySelector('#btn-suma');
 const btnResta = document.querySelector('#btn-resta');
@@ -22,6 +22,30 @@ const tituloNombreZapato = document.querySelector('#p-nombreZapato');
 const imgDepofit = document.querySelector('#img-depofit');
 const inputBuscar = document.querySelector('#input');
 
+const inputTelefono = document.querySelector('#input-telefono');
+const btnBorrarSugerenciasTLF = document.querySelector('#svgBorrarSugerencias');
+const btnBuscarSugerenciasTLF = document.querySelector('#lupa-telefono');
+const svgMenutelefono = document.querySelector('#menu-telefono');
+const menuTelefono = document.querySelector('#linksTelefono');
+
+
+svgMenutelefono.addEventListener('click', e => {
+    menuTelefono.classList.toggle('menu-visible');
+})
+
+btnBuscarSugerenciasTLF.addEventListener('click', e => {
+    const busqueda = document.querySelector('#busqueda-telefono');
+    busqueda.classList.add('displayflex');
+    busqueda.classList.remove('displaynone');
+})
+
+btnBorrarSugerenciasTLF.addEventListener('click', e => {
+    const busqueda = document.querySelector('#busqueda-telefono')
+    busqueda.classList.add('displaynone');
+    busqueda.classList.remove('displayflex');
+})
+
+
 imgDepofit.addEventListener('click', e => {
     window.location.pathname = `/`
 })
@@ -33,16 +57,23 @@ const cokiesGet = async () => {
             withCredentials: true
         }
     )
+    const perfilTelefono = document.querySelector('#perfil-telefono');
     const usuarioValido = data.acessToken
     if (usuarioValido === undefined) {
         console.log('NO ME DA LOS COOKIES');
         user.addEventListener('click', e => {
             window.location.pathname = `/login`
         })
+        perfilTelefono.addEventListener('click', e => {
+            window.location.pathname = `/login`
+        })
     }
     else {
         console.log('SI ME DA LAS COOKIES');
         user.addEventListener('click', e => {
+            window.location.pathname = `/perfil`
+        })
+        perfilTelefono.addEventListener('click', e => {
             window.location.pathname = `/perfil`
         })
     }
@@ -125,6 +156,83 @@ const getZapato = async () => {
     const descripcion = zapatoEncontrado.descripcion.split('.')
 
 
+    inputTelefono.addEventListener('input', e => {
+        const listaBusqueda = document.querySelector('#ul-busqueda-productos-telefono');
+        const busqueda = document.querySelector('#busqueda-telefono')
+
+        busqueda.classList.remove('displaynone');
+
+
+        busqueda.classList.add('displayflex');
+
+
+        const quitarAcentos = (texto) => {
+            return texto
+                .normalize("NFD") // Normalizar caracteres a su forma descompuesta
+                .replace(/[\u0300-\u036f]/g, ""); // Eliminar acentos y diacríticos
+        }
+
+
+        const filtrarZapatosInput = zapatos.filter(element => {
+            const textoFiltrar = quitarAcentos(e.target.value).toLowerCase();
+
+            const palabras = textoFiltrar.split(' ');
+
+            const tituloSinAcentos = quitarAcentos(element.titulo).toLowerCase();
+
+            const descripcionSinAcentos = quitarAcentos(element.descripcion).toLowerCase();
+
+            return palabras.every(palabra =>
+                tituloSinAcentos.includes(palabra) || descripcionSinAcentos.includes(palabra)
+            )
+
+        })
+
+
+        listaBusqueda.innerHTML = ''
+
+        if (filtrarZapatosInput.length === 0) {
+            listaBusqueda.innerHTML = '<li class="sin-resultados">Disculpa, no encontramos ningun resultado.</li>'
+        }
+
+
+        else {
+            filtrarZapatosInput.forEach(element => {
+                const id = element._id;
+                const titulo = element.titulo;
+                const img = element.miniatura;
+                const marca = element.marca;
+                const precio = element.precio;
+                const li = document.createElement('li');
+                li.id = id
+                li.className = 'li-busqueda'
+                li.innerHTML = `<div class="img-busqueda">
+    
+              <img class="img" src="${img}">
+    
+              </div>
+    
+             <div class="descripcion-busqueda">
+    
+            <p class="busqueda-titulo-gris">${titulo}</p>
+    
+             <p class="marca-busqueda">${marca}</p>
+    
+            <span class="precio-busqueda">$${precio}.00</span>
+    
+            </div>`
+
+                listaBusqueda.appendChild(li)
+                li.addEventListener('click', e => {
+                    const id = li.id
+                    window.location.pathname = `/productos/all/${id}`
+                })
+            });
+        }
+
+
+
+    })
     inputBuscar.addEventListener('input', e => {
         const listaBusqueda = document.querySelector('#ul-busqueda-productos');
 
@@ -360,7 +468,9 @@ const numArticulosCarrito = () => {
     let numeroArticulos = listaArticulos.children.length;
     tituloCarrito.innerHTML = `Carrito de compra (${numeroArticulos})`;
     const numeroCarrito = document.querySelector('#span-cart');
+    const numeroCarritoTelefono = document.querySelector('#span-cart-telefono');
     numeroCarrito.innerText = `${numeroArticulos}`
+    numeroCarritoTelefono.innerText = `${numeroArticulos}`
 };
 
 
@@ -395,9 +505,12 @@ politicaDeCambios.addEventListener('click', e => {
     politicaDeCambios.children[1].classList.toggle('activado');
 })
 
-cart.addEventListener('click', e => {
-    articulos.classList.toggle('cart-activado')
-})
+cart.forEach(element => {
+    element.addEventListener('click', e => {
+        articulos.classList.toggle('cart-activado')
+    })
+});
+
 
 
 
