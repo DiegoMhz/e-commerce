@@ -409,6 +409,7 @@ body {
 #btn-suma {
     padding: 9px;
     height: 100%;
+    width: 100%;
     fill: white;
     background-color: black;
     cursor: pointer;
@@ -419,13 +420,22 @@ body {
 #btn-suma:hover {
     background-color: #000000ba;
 }
+#div-btn-suma{
+    width: 2.8rem;
+}
+
+#div-btn-resta{
+    width: 2.8rem;
+}
 
 #btn-suma svg {
     height: 100%;
+    width: 100%;
 }
 
 #btn-resta svg {
     height: 100%;
+    width: 100%;
 }
 
 #btn-resta:disabled {
@@ -436,6 +446,7 @@ body {
 #btn-resta {
     padding: 9px;
     height: 100%;
+    width: 100%;
     fill: white;
     background-color: black;
     cursor: pointer;
