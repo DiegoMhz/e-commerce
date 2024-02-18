@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Login</title>
 </head>
+
 <body>
   <nav id="nav">
 
@@ -179,51 +182,72 @@
 
 
   </nav>
-    <section id="section-main">
-        <div id="contenedor-form">
-            <form id="form">
-                <h1 id="titulo-form">ACCESSO DEL CLIENTE</h1>
-                <div id="form-input">
-                    <label class="input-label" for="input-correo">Correo electronico</label>
-                    <input class="input" autocomplete="off" type="text" id="input-correo" placeholder="Correo electronico">
-                </div>
-                <div id="form-input">
-                    <label class="input-label" for="input-correo">Contraseña</label>
-                    <input class="input" type="text" id="input-password" autocomplete="off" placeholder="Contraseña">
-                </div>
-                <div id="form-btn">
-                    <button type="submit" id="btn">Iniciar sesión</button>
-                </div>
-                <div id="form-subtitulo">
-                    <p>¿Nuevo Cliente?</p> <a href="/signup">Registrarse</a>
-                </div>
-                <div id="errorMensaje">
+  <section id="section-main">
+    <div id="contenedor-form">
 
-                </div>
-            </form>
+
+      <form id="formCrearZapato">
+        <h1 id="titulo-form">Crear zapato</h1>
+        <div class="form-input">
+          <input class="input" type="text" name="titulo" id="inputTitulo" placeholder="Titulo">
+
+          <input class="input" type="text" id="inputDescripcion" placeholder="Descripcion">
+
+          <input class="input" type="text" id="inputPrecio" placeholder="Precio">
+
+          <input type="text" id="inputDescuento" class="input" placeholder="Descuento">
+
+          <select class="select" id="selectMarca">
+            <option value="" selected>Marca</option>
+            <option value="Nike">Nike</option>
+            <option value="Asics">Asics</option>
+            <option value="Lotto">Lotto</option>
+          </select>
+
+          <select class="select" id="selectCategoria">
+            <option value="" selected>Categoria</option>
+            <option value="Zapatos Tenis">Zapatos Tenis</option>
+            <option value="Zapatos Basquetbol">Zapatos Basquetbol</option>
+            <option value="Zapatos Futbol">Zapatos Futbol</option>
+          </select>
+
+          <select class="select" name="genero" id="selectGenero">
+            <option value="" selected disabled>Genero</option>
+            <option value="Caballero">Caballero</option>
+            <option value="Dama">Dama</option>
+          </select>
+
+          <input type="file" class="input" name="imagen" id="imagen" placeholder="cambiar foto">
+
+          <button type="submit">Enviar</button>
         </div>
-        <div id="contenedor-img">
-        </div>
-    </section>
-    <footer id="footer">
-        <div class="footer-description">
-          <h1>Ayuda</h1>
-          <ul class="listItem"> 
-            <li class="li-footer">Metodos de Pago</li>
-            <li class="li-footer">Métodos de entrega Caracas</li>
-            <li class="li-footer">Métodos de entrega Interior</li>
-            <li class="li-footer">Política de Cambios</li>
-          </ul>
-        </div>
-        <div class="footer-description">
-          <h1>Acerca De Depofit</h1>
-          <ul class="listItem">
-            <li class="li-footer">Quienes Somos?</li>
-            <li class="li-footer">Nuestras tiendas</li>
-            <li class="li-footer">Tarjetas de regalo</li>
-          </ul>
-        </div>
-      </footer>
-    <script src="index.js"></script>
+      </form>
+
+    </div>
+    <div id="contenedor-img">
+    </div>
+  </section>
+  <footer id="footer">
+    <div class="footer-description">
+      <h1>Ayuda</h1>
+      <ul class="listItem">
+        <li class="li-footer">Metodos de Pago</li>
+        <li class="li-footer">Métodos de entrega Caracas</li>
+        <li class="li-footer">Métodos de entrega Interior</li>
+        <li class="li-footer">Política de Cambios</li>
+      </ul>
+    </div>
+    <div class="footer-description">
+      <h1>Acerca De Depofit</h1>
+      <ul class="listItem">
+        <li class="li-footer">Quienes Somos?</li>
+        <li class="li-footer">Nuestras tiendas</li>
+        <li class="li-footer">Tarjetas de regalo</li>
+      </ul>
+    </div>
+  </footer>
 </body>
+
+<script src="admin.js"></script>
+
 </html>

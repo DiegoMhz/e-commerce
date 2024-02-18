@@ -20,7 +20,7 @@ svgMenutelefono.addEventListener('click', e => {
   menuTelefono.classList.toggle('menu-visible');
 })
 
-btnBuscarSugerenciasTLF.addEventListener('click', e =>{
+btnBuscarSugerenciasTLF.addEventListener('click', e => {
   const busqueda = document.querySelector('#busqueda-telefono');
   busqueda.classList.add('displayflex');
   busqueda.classList.remove('displaynone');
@@ -49,28 +49,32 @@ imgDepofit.addEventListener('click', e => {
 cart.forEach(element => {
   element.addEventListener('click', e => {
     articulos.classList.toggle('cart-activado')
-  })  
+  })
 });
 
 
-form.addEventListener('submit', async e =>{
-    e.preventDefault();
+form.addEventListener('submit', async e => {
+  e.preventDefault();
 
-    try {
-       const credentials ={
-        email: emailInput.value,
-        password: passwordInput.value
-       }
-      const {data} = await axios.post('/api/login/', credentials )
-      window.location.pathname = `/`;
-    } catch (error) {
-        const errorText = (error.response.data.error);
-        const div = document.createElement('div')
-        div.innerHTML = `<div id="div-error">
-        <p class="text-center text-red-500 font-bold">Email o contraseña invalida;</p>
-    </div>`
-        form.appendChild(div)
+  try {
+    const credentials = {
+      email: emailInput.value,
+      password: passwordInput.value
     }
+    const { data } = await axios.post('/api/login/', credentials)
+    
+    if (data.email === 'dibzz456@gmail.com') {
+      window.location.pathname = `/admin`;
+    }
+    else{
+      window.location.pathname = `/`;
+    }
+   
+  } catch (error) {
+    
+    const errorText = (error.response.data.error);
+    document.querySelector('#form #errorMensaje').innerText = `${errorText}`
+  }
 
 })
 

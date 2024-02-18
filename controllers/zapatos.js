@@ -10,20 +10,18 @@ zapatosRouter.get('/', async (request, response) => {
 });
 
 zapatosRouter.post('/', async (request, response) => {
-    const ObjectId = mongoose.Types.ObjectId;
-    const { zapatos } = request.body;
+    try {
+        const nuevoZapato  = request.body;
+        const existingDocument = await Zapatos.findOne()
+        nuevoZapato._id = new mongoose.Types.ObjectId();
+        existingDocument.zapatos.push(nuevoZapato);
+        const documentoActualizado = await existingDocument.save();
+        response.status(201).json(documentoActualizado);        
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({error: 'error al registrar datos'})
+    }
 
-    const newZapatos = new Zapatos({
-        zapatos,
-    });
-
-    newZapatos.zapatos.forEach(element => {
-        element._id = new ObjectId();
-    });
-
-    const savedZapatos = await newZapatos.save();
-    response.status(201).json(savedZapatos);
-    return;
 });
 
 zapatosRouter.delete('/:id', async (request, response) => {

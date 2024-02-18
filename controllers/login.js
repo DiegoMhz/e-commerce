@@ -8,7 +8,7 @@ loginRauter.post('/', async (request, response) => {
     const { email, password } = request.body;
     const userExist = await User.findOne({email});
     if (!userExist) {
-        return response.status(400).json({error:'Email o contraseña invalida;'})
+        return response.status(400).json({error:'Email o contraseña invalida'})
     }
     const passwordValidation = await bcrypt.compare(password, userExist.passwordHash)
     if (!passwordValidation) {
@@ -28,7 +28,7 @@ loginRauter.post('/', async (request, response) => {
     httpOnly: true,
     });
     
-    response.status(200).json(userExist._id)
+    response.status(200).json(userForToken)
 });
 
 
