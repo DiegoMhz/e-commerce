@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express')
 const app = express();
 const multer = require('multer');
-const sharp = require('sharp');
 const mongoose = require('mongoose');
 const patch = require('path');
 const cors = require('cors');
