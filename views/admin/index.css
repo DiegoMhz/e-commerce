@@ -34,7 +34,7 @@ body{
     cursor: pointer;
 }
 
-#nav-links {
+#links-escritorio {
     display: flex;
     gap: 1rem;
 }
@@ -266,6 +266,22 @@ body{
     font-size: 1rem;
     border-color: rgb(207 207 207);
 }
+
+.form-input button{
+    padding: 0.5rem;
+    color: white;
+    background-color: black;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-input button:hover{
+   background-color: #1c1c1c;
+}
+
+
 
 .select{
     padding: 0.5rem;

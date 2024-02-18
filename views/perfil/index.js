@@ -46,7 +46,10 @@ btnSalir.addEventListener('click', async e => {
     withCredentials: true
   })
   console.log(data);
-  window.location.pathname = '/'
+  setTimeout(() => {
+    window.location.pathname = '/'
+  }, "1000");
+ 
 })
 
 imgDepofit.addEventListener('click', e => {
