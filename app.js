@@ -5,7 +5,7 @@ const multer = require('multer');
 const mongoose = require('mongoose');
 const patch = require('path');
 const cors = require('cors');
-const fs = require('node:fs')
+const fs = require('fs-extra')
 const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
 const carritoRouter = require('./controllers/carrito');
@@ -42,12 +42,17 @@ app.post('api/imagenes/multi', upload.array('imagen', 10),(request, response) =>
     console.log(request.files);
 })
 
-const guardarImagen = (imagen) => {
-    const newPath = `./img/${imagen.originalname}`
-    fs.renameSync(imagen.path, newPath)
-    return newPath;
-}
+const guardarImagen = async (imagen) => {
+    const newPath = `./img/${imagen.originalname}`;
 
+    try {
+        await fs.move(imagen.path, newPath);
+        return newPath;
+    } catch (error) {
+        console.error('Error al mover el archivo:', error);
+        throw error;
+    }
+};
 
 // MIDDLEWARES
 app.use(cors());
